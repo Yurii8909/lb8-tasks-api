@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks API - Лабораторна робота 8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+        .api-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .endpoint {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .method {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-family: monospace;
+            margin-right: 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .get { background: #28a745; }
+        .post { background: #007bff; }
+        .put { background: #ffc107; color: #333; }
+        .delete { background: #dc3545; }
+        .url {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .badge {
+            background: #17a2b8;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Tasks API - Лабораторна робота 8</h1>
+        
+        <div class="api-info">
+            <h2>Завдання виконано:</h2>
+            <p><span class="success"></span> CRUD операції з MongoDB Atlas</p>
+            <p><span class="success"></span> Агрегаційні запити (getTasksSummary)</p>
+            <p><span class="success"></span> Реалізовано всі функції контролера</p>
+        </div>
+        
+        <h2>Посилання для звіту:</h2>
+        <div class="url">
+            1. Код на GitHub: <a href="https://github.com/Yurii8909/lb8-tasks-api">https://github.com/Yurii8909/lb8-tasks-api</a>
+        </div>
+        <div class="url">
+            2. Ця сторінка (GitHub Pages): <strong>https://yurii8909.github.io/lb8-tasks-api/</strong>
+        </div>
+        
+        <h2>Реалізовані ендпоінти:</h2>
+        
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/api/tasks</strong>
+            <p>Створення нової задачі</p>
+            <p><em>Body: {title, description, priority, dueDate}</em></p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/api/tasks</strong>
+            <p>Отримання всіх задач (сортування за createdAt)</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/api/tasks/:id</strong>
+            <p>Отримання задачі по ID</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/api/tasks/status/:status</strong>
+            <p>Фільтрація за статусом (pending/completed)</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method put">PUT</span>
+            <strong>/api/tasks/:id</strong>
+            <p>Оновлення задачі</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method put">PUT</span>
+            <strong>/api/tasks/:id/complete</strong>
+            <p>Позначити як виконану (markAsCompleted)</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method delete">DELETE</span>
+            <strong>/api/tasks/:id</strong>
+            <p>Видалення задачі</p>
+        </div>
+        
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/api/tasks/summary</strong>
+            <p>Агрегація: статистика по задачам <span class="badge">NEW</span></p>
+            <p><em>Повертає: {total, pending, completed, completionRate}</em></p>
+        </div>
+        
+        <h2>Модель Task:</h2>
+        <ul>
+            <li>title (String, required)</li>
+            <li>description (String)</li>
+            <li>status (String: 'pending'/'completed')</li>
+            <li>priority (Number: 1-5)</li>
+            <li>dueDate (Date)</li>
+            <li>createdAt, updatedAt (Date, auto)</li>
+        </ul>
+        
+        <footer>
+            <p>© 2024 | Лабораторна робота №8 | CRUD та агрегація з MongoDB</p>
+        </footer>
+    </div>
+</body>
+</html>
